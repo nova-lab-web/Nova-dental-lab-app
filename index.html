@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Nova Dental Lab</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f7fa;
+  color:#17324d
+}
+.app{
+  max-width:500px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px
+}
+.logo{
+  text-align:center;
+  font-size:30px;
+  font-weight:bold;
+  margin:35px 0 10px
+}
+.subtitle{
+  text-align:center;
+  color:#718096;
+  margin-bottom:35px
+}
+.card{
+  background:white;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 5px 20px #00000012;
+  margin-bottom:18px
+}
+input,select,button{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid #d8e0e8;
+  font-size:16px;
+  margin-top:10px
+}
+button{
+  background:#1769aa;
+  color:white;
+  border:0;
+  font-weight:bold;
+  cursor:pointer
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px
+}
+.menu{
+  background:white;
+  border-radius:18px;
+  padding:22px 10px;
+  text-align:center;
+  box-shadow:0 4px 15px #00000010;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:17px
+}
+.icon{
+  font-size:32px;
+  display:block;
+  margin-bottom:10px
+}
+.hidden{display:none}
+h2{text-align:center}
+.back{
+  background:#64748b;
+  margin-bottom:15px
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- شاشة كلمة السر -->
+<section id="login">
+  <div class="logo">Nova Dental Lab</div>
+  <div class="subtitle">إدارة مختبر الأسنان</div>
+
+  <div class="card">
+    <h2>🔐 كلمة السر</h2>
+    <input id="password" type="password" placeholder="اكتب كلمة السر">
+    <button onclick="login()">دخول</button>
+  </div>
+</section>
+
+
+<!-- الصفحة الرئيسية -->
+<section id="home" class="hidden">
+
+  <div class="logo">Nova Dental Lab</div>
+  <div class="subtitle">الرئيسية</div>
+
+  <div class="grid">
+
+    <div class="menu" onclick="openPage('doctors')">
+      <span class="icon">🧑‍⚕️</span>
+      الطبيب
+    </div>
+
+    <div class="menu" onclick="openPage('cases')">
+      <span class="icon">🦷</span>
+      الحالات
+    </div>
+
+    <div class="menu" onclick="openPage('prices')">
+      <span class="icon">💰</span>
+      الأسعار
+    </div>
+
+    <div class="menu" onclick="openPage('accounts')">
+      <span class="icon">📊</span>
+      الحسابات
+    </div>
+
+    <div class="menu" onclick="openPage('invoices')">
+      <span class="icon">🧾</span>
+      الفواتير
+    </div>
+
+    <div class="menu" onclick="openPage('settings')">
+      <span class="icon">⚙️</span>
+      الإعدادات
+    </div>
+
+  </div>
+</section>
+
+
+<!-- الأطباء -->
+<section id="doctors" class="hidden">
+  <button class="back" onclick="home()">← الرئيسية</button>
+  <div class="card">
+    <h2>🧑‍⚕️ الأطباء</h2>
+    <input placeholder="اسم الطبيب">
+    <input placeholder="رقم الهاتف">
+    <button>➕ إضافة طبيب</button>
+  </div>
+</section>
+
+
+<!-- الحالات -->
+<section id="cases" class="hidden">
+  <button class="back" onclick="home()">← الرئيسية</button>
+
+  <div class="card">
+    <h2>🦷 الحالات</h2>
+
+    <select>
+      <option>اختيار الطبيب</option>
+    </select>
+
+    <input placeholder="اسم المريض">
+
+    <input placeholder="اسم الحالة">
+
+    <input placeholder="اللون">
+
+    <input type="number" placeholder="السعر">
+
+    <input type="number" placeholder="المدفوع">
+
+    <button>➕ إضافة حالة</button>
+  </div>
+</section>
+
+
+<!-- الأسعار -->
+<section id="prices" class="hidden">
+  <button class="back" onclick="home()">← الرئيسية</button>
+
+  <div class="card">
+    <h2>💰 الأسعار</h2>
+
+    <input placeholder="نوع الحالة">
+
+    <input type="number" placeholder="السعر">
+
+    <button>➕ إضافة حالة</button>
+  </div>
+</section>
+
+
+<!-- الحسابات -->
+<section id="accounts" class="hidden">
+  <button class="back" onclick="home()">← الرئيسية</button>
+
+  <div class="card">
+    <h2>📊 الحسابات</h2>
+
+    <input placeholder="اختيار الطبيب">
+
+    <p>إجمالي الحساب: <strong>0</strong></p>
+    <p>المدفوع: <strong>0</strong></p>
+    <p>المتبقي: <strong>0</strong></p>
+
+    <button>💵 تسجيل دفعة</button>
+  </div>
+</section>
+
+
+<!-- الفواتير -->
+<section id="invoices" class="hidden">
+  <button class="back" onclick="home()">← الرئيسية</button>
+
+  <div class="card">
+    <h2>🧾 الفواتير</h2>
+
+    <input type="date" id="fromDate">
+    <input type="date" id="toDate">
+
+    <select>
+      <option>اختيار الطبيب</option>
+    </select>
+
+    <button>🔎 عرض الحالات</button>
+
+    <button>📄 إنشاء PDF</button>
+  </div>
+</section>
+
+
+<!-- الإعدادات -->
+<section id="settings" class="hidden">
+  <button class="back" onclick="home()">← الرئيسية</button>
+
+  <div class="card">
+    <h2>⚙️ الإعدادات</h2>
+
+    <input placeholder="اسم المختبر">
+    <input placeholder="رقم الهاتف">
+    <input placeholder="العنوان">
+
+    <button>🔐 تغيير كلمة السر</button>
+    <button>💾 نسخة احتياطية</button>
+    <button>♻️ استعادة البيانات</button>
+  </div>
+</section>
+
+</div>
+
+
+<script>
+
+const PASSWORD="1234";
+
+function login(){
+  const p=document.getElementById("password").value;
+
+  if(p===PASSWORD){
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("home").classList.remove("hidden");
+  }else{
+    alert("كلمة السر غير صحيحة");
+  }
+}
+
+function openPage(id){
+  document.querySelectorAll("section").forEach(x=>{
+    x.classList.add("hidden");
+  });
+
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function home(){
+  openPage("home");
+}
+
+</script>
+
+</body>
+      </html>
