@@ -2,81 +2,155 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nova Dental Lab</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f4f7fa;
-  color:#17324d
+margin:0;
+font-family:Arial,Tahoma,sans-serif;
+background:#f4f7fa;
+color:#17324d
 }
+
 .app{
-  max-width:500px;
-  margin:auto;
-  min-height:100vh;
-  padding:20px
+max-width:520px;
+margin:auto;
+min-height:100vh;
+padding:18px
 }
+
+.header{
+text-align:center;
+padding:25px 10px
+}
+
 .logo{
-  text-align:center;
-  font-size:30px;
-  font-weight:bold;
-  margin:35px 0 10px
+font-size:28px;
+font-weight:bold
 }
-.subtitle{
-  text-align:center;
-  color:#718096;
-  margin-bottom:35px
+
+.sub{
+color:#718096;
+margin-top:7px
 }
+
 .card{
-  background:white;
-  border-radius:18px;
-  padding:22px;
-  box-shadow:0 5px 20px #00000012;
-  margin-bottom:18px
+background:#fff;
+border-radius:18px;
+padding:20px;
+margin-bottom:16px;
+box-shadow:0 4px 18px #00000012
 }
+
+h2{
+margin-top:0;
+text-align:center
+}
+
 input,select,button{
-  width:100%;
-  padding:15px;
-  border-radius:12px;
-  border:1px solid #d8e0e8;
-  font-size:16px;
-  margin-top:10px
+width:100%;
+padding:14px;
+margin-top:10px;
+border-radius:12px;
+font-size:16px
 }
+
+input,select{
+border:1px solid #d7e0e8;
+background:#fff
+}
+
 button{
-  background:#1769aa;
-  color:white;
-  border:0;
-  font-weight:bold;
-  cursor:pointer
+border:0;
+background:#1769aa;
+color:white;
+font-weight:bold
 }
+
+button.secondary{
+background:#64748b
+}
+
+button.danger{
+background:#c62828
+}
+
 .grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px
 }
+
 .menu{
-  background:white;
-  border-radius:18px;
-  padding:22px 10px;
-  text-align:center;
-  box-shadow:0 4px 15px #00000010;
-  cursor:pointer;
-  font-weight:bold;
-  font-size:17px
+background:#fff;
+padding:22px 10px;
+border-radius:18px;
+text-align:center;
+font-weight:bold;
+box-shadow:0 4px 15px #00000010
 }
-.icon{
-  font-size:32px;
-  display:block;
-  margin-bottom:10px
+
+.menu span{
+display:block;
+font-size:31px;
+margin-bottom:8px
 }
-.hidden{display:none}
-h2{text-align:center}
-.back{
-  background:#64748b;
-  margin-bottom:15px
+
+.hidden{
+display:none!important
+}
+
+.row{
+display:flex;
+gap:8px
+}
+
+.row>*{
+flex:1
+}
+
+.item{
+border:1px solid #e0e6ec;
+border-radius:14px;
+padding:14px;
+margin-top:10px;
+background:#fafcff
+}
+
+.item b{
+display:block;
+margin-bottom:7px
+}
+
+.total{
+font-size:18px;
+padding:8px 0
+}
+
+.green{
+color:#16803c
+}
+
+.red{
+color:#c62828
+}
+
+.empty{
+text-align:center;
+color:#718096;
+padding:20px
+}
+
+.small{
+font-size:13px;
+color:#718096
+}
+
+@media(max-width:360px){
+.grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -85,169 +159,322 @@ h2{text-align:center}
 
 <div class="app">
 
-<!-- شاشة كلمة السر -->
+<!-- LOGIN -->
 <section id="login">
-  <div class="logo">Nova Dental Lab</div>
-  <div class="subtitle">إدارة مختبر الأسنان</div>
 
-  <div class="card">
-    <h2>🔐 كلمة السر</h2>
-    <input id="password" type="password" placeholder="اكتب كلمة السر">
-    <button onclick="login()">دخول</button>
-  </div>
+<div class="header">
+<div class="logo">Nova Dental Lab</div>
+<div class="sub">إدارة مختبر الأسنان</div>
+</div>
+
+<div class="card">
+
+<h2>🔐 كلمة السر</h2>
+
+<input
+id="password"
+type="password"
+placeholder="اكتب كلمة السر"
+>
+
+<button onclick="login()">دخول</button>
+
+</div>
+
 </section>
 
 
-<!-- الصفحة الرئيسية -->
+<!-- HOME -->
 <section id="home" class="hidden">
 
-  <div class="logo">Nova Dental Lab</div>
-  <div class="subtitle">الرئيسية</div>
+<div class="header">
+<div class="logo">Nova Dental Lab</div>
+<div class="sub">الرئيسية</div>
+</div>
 
-  <div class="grid">
+<div class="grid">
 
-    <div class="menu" onclick="openPage('doctors')">
-      <span class="icon">🧑‍⚕️</span>
-      الطبيب
-    </div>
+<div class="menu" onclick="page('doctors')">
+<span>🧑‍⚕️</span>
+الطبيب
+</div>
 
-    <div class="menu" onclick="openPage('cases')">
-      <span class="icon">🦷</span>
-      الحالات
-    </div>
+<div class="menu" onclick="page('cases')">
+<span>🦷</span>
+الحالات
+</div>
 
-    <div class="menu" onclick="openPage('prices')">
-      <span class="icon">💰</span>
-      الأسعار
-    </div>
+<div class="menu" onclick="page('prices')">
+<span>💰</span>
+الأسعار
+</div>
 
-    <div class="menu" onclick="openPage('accounts')">
-      <span class="icon">📊</span>
-      الحسابات
-    </div>
+<div class="menu" onclick="page('accounts')">
+<span>📊</span>
+الحسابات
+</div>
 
-    <div class="menu" onclick="openPage('invoices')">
-      <span class="icon">🧾</span>
-      الفواتير
-    </div>
+<div class="menu" onclick="page('invoices')">
+<span>🧾</span>
+الفواتير
+</div>
 
-    <div class="menu" onclick="openPage('settings')">
-      <span class="icon">⚙️</span>
-      الإعدادات
-    </div>
+<div class="menu" onclick="page('settings')">
+<span>⚙️</span>
+الإعدادات
+</div>
 
-  </div>
+</div>
+
 </section>
 
 
-<!-- الأطباء -->
+<!-- DOCTORS -->
 <section id="doctors" class="hidden">
-  <button class="back" onclick="home()">← الرئيسية</button>
-  <div class="card">
-    <h2>🧑‍⚕️ الأطباء</h2>
-    <input placeholder="اسم الطبيب">
-    <input placeholder="رقم الهاتف">
-    <button>➕ إضافة طبيب</button>
-  </div>
+
+<button class="secondary" onclick="page('home')">
+← الرئيسية
+</button>
+
+<div class="card">
+
+<h2>🧑‍⚕️ الأطباء</h2>
+
+<input
+id="doctorName"
+placeholder="اسم الطبيب"
+>
+
+<input
+id="doctorPhone"
+placeholder="رقم الهاتف"
+inputmode="tel"
+>
+
+<button onclick="addDoctor()">
+➕ إضافة طبيب
+</button>
+
+</div>
+
+<div id="doctorList"></div>
+
 </section>
 
 
-<!-- الحالات -->
+<!-- CASES -->
 <section id="cases" class="hidden">
-  <button class="back" onclick="home()">← الرئيسية</button>
 
-  <div class="card">
-    <h2>🦷 الحالات</h2>
+<button class="secondary" onclick="page('home')">
+← الرئيسية
+</button>
 
-    <select>
-      <option>اختيار الطبيب</option>
-    </select>
+<div class="card">
 
-    <input placeholder="اسم المريض">
+<h2>🦷 إضافة حالة</h2>
 
-    <input placeholder="اسم الحالة">
+<select id="caseDoctor">
+<option value="">اختيار الطبيب</option>
+</select>
 
-    <input placeholder="اللون">
+<input
+id="patientName"
+placeholder="اسم المريض"
+>
 
-    <input type="number" placeholder="السعر">
+<select id="caseType">
+<option value="">اختيار نوع الحالة</option>
+</select>
 
-    <input type="number" placeholder="المدفوع">
+<input
+id="caseColor"
+placeholder="اللون"
+>
 
-    <button>➕ إضافة حالة</button>
-  </div>
+<input
+id="casePrice"
+type="number"
+placeholder="السعر"
+inputmode="decimal"
+>
+
+<input
+id="casePaid"
+type="number"
+placeholder="المدفوع"
+inputmode="decimal"
+>
+
+<!-- التاريخ هنا مطلوب فقط عشان الفواتير تقدر تبحث من تاريخ إلى تاريخ -->
+<input
+id="caseDate"
+type="date"
+>
+
+<button onclick="addCase()">
+➕ إضافة حالة
+</button>
+
+</div>
+
+<div id="caseList"></div>
+
 </section>
 
 
-<!-- الأسعار -->
+<!-- PRICES -->
 <section id="prices" class="hidden">
-  <button class="back" onclick="home()">← الرئيسية</button>
 
-  <div class="card">
-    <h2>💰 الأسعار</h2>
+<button class="secondary" onclick="page('home')">
+← الرئيسية
+</button>
 
-    <input placeholder="نوع الحالة">
+<div class="card">
 
-    <input type="number" placeholder="السعر">
+<h2>💰 الأسعار</h2>
 
-    <button>➕ إضافة حالة</button>
-  </div>
+<input
+id="priceType"
+placeholder="نوع الحالة"
+>
+
+<input
+id="priceValue"
+type="number"
+placeholder="السعر"
+inputmode="decimal"
+>
+
+<button onclick="addPrice()">
+➕ إضافة حالة
+</button>
+
+</div>
+
+<div id="priceList"></div>
+
 </section>
 
 
-<!-- الحسابات -->
+<!-- ACCOUNTS -->
 <section id="accounts" class="hidden">
-  <button class="back" onclick="home()">← الرئيسية</button>
 
-  <div class="card">
-    <h2>📊 الحسابات</h2>
+<button class="secondary" onclick="page('home')">
+← الرئيسية
+</button>
 
-    <input placeholder="اختيار الطبيب">
+<div class="card">
 
-    <p>إجمالي الحساب: <strong>0</strong></p>
-    <p>المدفوع: <strong>0</strong></p>
-    <p>المتبقي: <strong>0</strong></p>
+<h2>📊 الحسابات</h2>
 
-    <button>💵 تسجيل دفعة</button>
-  </div>
+<select
+id="accountDoctor"
+onchange="showAccount()"
+>
+<option value="">اختيار الطبيب</option>
+</select>
+
+<div id="accountResult">
+
+<div class="empty">
+اختار الطبيب لعرض الحساب
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 
-<!-- الفواتير -->
+<!-- INVOICES -->
 <section id="invoices" class="hidden">
-  <button class="back" onclick="home()">← الرئيسية</button>
 
-  <div class="card">
-    <h2>🧾 الفواتير</h2>
+<button class="secondary" onclick="page('home')">
+← الرئيسية
+</button>
 
-    <input type="date" id="fromDate">
-    <input type="date" id="toDate">
+<div class="card">
 
-    <select>
-      <option>اختيار الطبيب</option>
-    </select>
+<h2>🧾 الفواتير</h2>
 
-    <button>🔎 عرض الحالات</button>
+<select id="invoiceDoctor">
+<option value="">اختيار الطبيب</option>
+</select>
 
-    <button>📄 إنشاء PDF</button>
-  </div>
+<div class="row">
+
+<input
+id="fromDate"
+type="date"
+>
+
+<input
+id="toDate"
+type="date"
+>
+
+</div>
+
+<button onclick="showInvoiceCases()">
+🔎 عرض الحالات
+</button>
+
+</div>
+
+<div id="invoiceResult"></div>
+
 </section>
 
 
-<!-- الإعدادات -->
+<!-- SETTINGS -->
 <section id="settings" class="hidden">
-  <button class="back" onclick="home()">← الرئيسية</button>
 
-  <div class="card">
-    <h2>⚙️ الإعدادات</h2>
+<button class="secondary" onclick="page('home')">
+← الرئيسية
+</button>
 
-    <input placeholder="اسم المختبر">
-    <input placeholder="رقم الهاتف">
-    <input placeholder="العنوان">
+<div class="card">
 
-    <button>🔐 تغيير كلمة السر</button>
-    <button>💾 نسخة احتياطية</button>
-    <button>♻️ استعادة البيانات</button>
-  </div>
+<h2>⚙️ الإعدادات</h2>
+
+<input
+id="labName"
+placeholder="اسم المختبر"
+>
+
+<input
+id="labPhone"
+placeholder="رقم الهاتف"
+>
+
+<input
+id="labAddress"
+placeholder="العنوان"
+>
+
+<button onclick="saveSettings()">
+💾 حفظ الإعدادات
+</button>
+
+<button onclick="backupData()">
+💾 نسخ احتياطي
+</button>
+
+<button onclick="document.getElementById('restoreFile').click()">
+♻️ استعادة البيانات
+</button>
+
+<input
+id="restoreFile"
+type="file"
+accept=".json"
+class="hidden"
+onchange="restoreData(event)"
+>
+
+</div>
+
 </section>
 
 </div>
@@ -255,32 +482,886 @@ h2{text-align:center}
 
 <script>
 
-const PASSWORD="1234";
+/* =========================
+   البيانات المحلية
+========================= */
+
+let doctors =
+JSON.parse(localStorage.getItem("nova_doctors") || "[]");
+
+let cases =
+JSON.parse(localStorage.getItem("nova_cases") || "[]");
+
+let prices =
+JSON.parse(localStorage.getItem("nova_prices") || "[]");
+
+let settings =
+JSON.parse(localStorage.getItem("nova_settings") || "{}");
+
+
+function saveAll(){
+
+localStorage.setItem(
+"nova_doctors",
+JSON.stringify(doctors)
+);
+
+localStorage.setItem(
+"nova_cases",
+JSON.stringify(cases)
+);
+
+localStorage.setItem(
+"nova_prices",
+JSON.stringify(prices)
+);
+
+localStorage.setItem(
+"nova_settings",
+JSON.stringify(settings)
+);
+
+}
+
+
+/* =========================
+   تسجيل الدخول
+========================= */
 
 function login(){
-  const p=document.getElementById("password").value;
 
-  if(p===PASSWORD){
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("home").classList.remove("hidden");
-  }else{
-    alert("كلمة السر غير صحيحة");
-  }
+let p =
+document.getElementById("password").value;
+
+if(p === "1234"){
+
+document.getElementById("login")
+.classList.add("hidden");
+
+page("home");
+
+}else{
+
+alert("كلمة السر غير صحيحة");
+
 }
 
-function openPage(id){
-  document.querySelectorAll("section").forEach(x=>{
-    x.classList.add("hidden");
-  });
-
-  document.getElementById(id).classList.remove("hidden");
 }
 
-function home(){
-  openPage("home");
+
+/* =========================
+   التنقل
+========================= */
+
+function page(id){
+
+document
+.querySelectorAll("section")
+.forEach(s => s.classList.add("hidden"));
+
+document
+.getElementById(id)
+.classList.remove("hidden");
+
+if(id === "doctors")
+renderDoctors();
+
+if(id === "cases")
+prepareCases();
+
+if(id === "prices")
+renderPrices();
+
+if(id === "accounts")
+prepareAccounts();
+
+if(id === "invoices")
+prepareInvoices();
+
+if(id === "settings")
+loadSettings();
+
 }
 
-</script>
 
+/* =========================
+   الأطباء
+========================= */
+
+function addDoctor(){
+
+let name =
+document.getElementById("doctorName")
+.value.trim();
+
+let phone =
+document.getElementById("doctorPhone")
+.value.trim();
+
+if(!name){
+
+alert("اكتب اسم الطبيب");
+
+return;
+
+}
+
+doctors.push({
+
+id:Date.now(),
+
+name:name,
+
+phone:phone
+
+});
+
+saveAll();
+
+document.getElementById("doctorName").value="";
+document.getElementById("doctorPhone").value="";
+
+renderDoctors();
+
+alert("تمت إضافة الطبيب");
+
+}
+
+
+function renderDoctors(){
+
+let box =
+document.getElementById("doctorList");
+
+if(!doctors.length){
+
+box.innerHTML =
+'<div class="empty">لا يوجد أطباء</div>';
+
+return;
+
+}
+
+box.innerHTML =
+doctors.map(d => `
+
+<div class="item">
+
+<b>🧑‍⚕️ ${d.name}</b>
+
+<div class="small">
+${d.phone || "بدون رقم هاتف"}
+</div>
+
+<button
+class="danger"
+onclick="deleteDoctor(${d.id})"
+>
+حذف
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+function deleteDoctor(id){
+
+if(!confirm("هل تريد حذف الطبيب؟")) return;
+
+doctors =
+doctors.filter(d => d.id !== id);
+
+saveAll();
+
+renderDoctors();
+
+}
+
+
+/* =========================
+   الأسعار
+========================= */
+
+function addPrice(){
+
+let type =
+document.getElementById("priceType")
+.value.trim();
+
+let value =
+Number(document.getElementById("priceValue").value);
+
+if(!type || !value){
+
+alert("اكتب نوع الحالة والسعر");
+
+return;
+
+}
+
+prices.push({
+
+id:Date.now(),
+
+type:type,
+
+price:value
+
+});
+
+saveAll();
+
+document.getElementById("priceType").value="";
+document.getElementById("priceValue").value="";
+
+renderPrices();
+
+alert("تمت إضافة الحالة والسعر");
+
+}
+
+
+function renderPrices(){
+
+let box =
+document.getElementById("priceList");
+
+if(!prices.length){
+
+box.innerHTML =
+'<div class="empty">لا توجد أسعار</div>';
+
+return;
+
+}
+
+box.innerHTML =
+prices.map(p => `
+
+<div class="item">
+
+<b>${p.type}</b>
+
+<div>
+السعر: ${p.price}
+</div>
+
+<button
+class="danger"
+onclick="deletePrice(${p.id})"
+>
+حذف
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+function deletePrice(id){
+
+prices =
+prices.filter(p => p.id !== id);
+
+saveAll();
+
+renderPrices();
+
+}
+
+
+/* =========================
+   تجهيز الحالات
+========================= */
+
+function prepareCases(){
+
+let select =
+document.getElementById("caseDoctor");
+
+select.innerHTML =
+'<option value="">اختيار الطبيب</option>' +
+
+doctors.map(d =>
+`<option value="${d.id}">
+${d.name}
+</option>`
+).join("");
+
+let type =
+document.getElementById("caseType");
+
+type.innerHTML =
+'<option value="">اختيار نوع الحالة</option>' +
+
+prices.map(p =>
+`<option value="${p.id}">
+${p.type}
+</option>`
+).join("");
+
+type.onchange = function(){
+
+let p =
+prices.find(x =>
+x.id == this.value
+);
+
+if(p){
+
+document.getElementById("casePrice")
+.value = p.price;
+
+}
+
+};
+
+renderCases();
+
+}
+
+
+function addCase(){
+
+let doctorId =
+Number(document.getElementById("caseDoctor").value);
+
+let patient =
+document.getElementById("patientName")
+.value.trim();
+
+let typeId =
+Number(document.getElementById("caseType").value);
+
+let color =
+document.getElementById("caseColor")
+.value.trim();
+
+let price =
+Number(document.getElementById("casePrice").value);
+
+let paid =
+Number(document.getElementById("casePaid").value);
+
+let date =
+document.getElementById("caseDate").value;
+
+if(!doctorId || !patient || !typeId || !price || !date){
+
+alert("أكمل بيانات الحالة");
+
+return;
+
+}
+
+let type =
+prices.find(p => p.id === typeId);
+
+cases.push({
+
+id:Date.now(),
+
+doctorId:doctorId,
+
+patient:patient,
+
+type:type ? type.type : "",
+
+color:color,
+
+price:price,
+
+paid:paid || 0,
+
+date:date
+
+});
+
+saveAll();
+
+document.getElementById("patientName").value="";
+document.getElementById("caseColor").value="";
+document.getElementById("casePrice").value="";
+document.getElementById("casePaid").value="";
+
+renderCases();
+
+alert("تمت إضافة الحالة");
+
+}
+
+
+function renderCases(){
+
+let box =
+document.getElementById("caseList");
+
+if(!cases.length){
+
+box.innerHTML =
+'<div class="empty">لا توجد حالات</div>';
+
+return;
+
+}
+
+box.innerHTML =
+cases.slice().reverse().map(c => {
+
+let d =
+doctors.find(x => x.id === c.doctorId);
+
+let remaining =
+Math.max(0,c.price-c.paid);
+
+return `
+
+<div class="item">
+
+<b>🦷 ${c.patient}</b>
+
+<div>الطبيب: ${d ? d.name : "-"}</div>
+
+<div>نوع الحالة: ${c.type}</div>
+
+<div>اللون: ${c.color || "-"}</div>
+
+<div>التاريخ: ${c.date}</div>
+
+<div>السعر: ${c.price}</div>
+
+<div>المدفوع: ${c.paid}</div>
+
+<div class="${remaining ? "red":"green"}">
+المتبقي: ${remaining}
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+/* =========================
+   الحسابات
+========================= */
+
+function prepareAccounts(){
+
+let select=document.getElementById("accountDoctor");
+
+select.innerHTML=
+'<option value="">اختيار الطبيب</option>'+
+doctors.map(d=>`
+<option value="${d.id}">${d.name}</option>
+`).join("");
+
+showAccount();
+
+}
+
+function showAccount(){
+
+let doctorId=
+Number(document.getElementById("accountDoctor").value);
+
+let box=document.getElementById("accountResult");
+
+if(!doctorId){
+
+box.innerHTML=
+'<div class="empty">اختار الطبيب لعرض الحساب</div>';
+
+return;
+
+}
+
+let list=
+cases.filter(c=>c.doctorId===doctorId);
+
+let total=
+list.reduce((sum,c)=>sum+Number(c.price||0),0);
+
+let paid=
+list.reduce((sum,c)=>sum+Number(c.paid||0),0);
+
+let remaining=total-paid;
+
+box.innerHTML=`
+
+<div class="total">
+إجمالي الحساب: <b>${total}</b>
+</div>
+
+<div class="total green">
+إجمالي المدفوع: <b>${paid}</b>
+</div>
+
+<div class="total ${remaining>0?'red':'green'}">
+إجمالي المتبقي: <b>${remaining}</b>
+</div>
+
+<hr>
+
+${list.length ? list.map(c=>`
+
+<div class="item">
+
+<b>${c.patient}</b>
+
+<div>نوع الحالة: ${c.type}</div>
+<div>التاريخ: ${c.date}</div>
+<div>السعر: ${c.price}</div>
+<div>المدفوع: ${c.paid}</div>
+<div>المتبقي: ${Math.max(0,c.price-c.paid)}</div>
+
+</div>
+
+`).join("") :
+'<div class="empty">لا توجد حالات لهذا الطبيب</div>'}
+
+`;
+
+}
+
+
+/* =========================
+   الفواتير بالفترة الزمنية
+========================= */
+
+function prepareInvoices(){
+
+let select=
+document.getElementById("invoiceDoctor");
+
+select.innerHTML=
+'<option value="">كل الأطباء</option>'+
+doctors.map(d=>`
+<option value="${d.id}">${d.name}</option>
+`).join("");
+
+}
+
+
+function showInvoiceCases(){
+
+let doctorValue=
+document.getElementById("invoiceDoctor").value;
+
+let from=
+document.getElementById("fromDate").value;
+
+let to=
+document.getElementById("toDate").value;
+
+if(!from || !to){
+
+alert("اختار تاريخ البداية والنهاية");
+
+return;
+
+}
+
+if(from>to){
+
+alert("تاريخ البداية لازم يكون قبل تاريخ النهاية");
+
+return;
+
+}
+
+let list=cases.filter(c=>{
+
+let doctorOK=
+!doctorValue ||
+c.doctorId===Number(doctorValue);
+
+let dateOK=
+c.date>=from && c.date<=to;
+
+return doctorOK && dateOK;
+
+});
+
+let total=
+list.reduce((s,c)=>s+Number(c.price||0),0);
+
+let paid=
+list.reduce((s,c)=>s+Number(c.paid||0),0);
+
+let remaining=total-paid;
+
+let box=
+document.getElementById("invoiceResult");
+
+if(!list.length){
+
+box.innerHTML=`
+
+<div class="card empty">
+
+لا توجد حالات خلال الفترة المحددة.
+
+</div>
+
+`;
+
+return;
+
+}
+
+box.innerHTML=`
+
+<div class="card" id="printInvoice">
+
+<h2>🧾 Nova Dental Lab</h2>
+
+<p>
+<strong>الفترة:</strong>
+${from} إلى ${to}
+</p>
+
+<hr>
+
+${list.map((c,i)=>{
+
+let d=
+doctors.find(x=>x.id===c.doctorId);
+
+return `
+
+<div class="item">
+
+<b>${i+1}. ${c.patient}</b>
+
+<div>الطبيب: ${d ? d.name : "-"}</div>
+<div>نوع الحالة: ${c.type}</div>
+<div>اللون: ${c.color || "-"}</div>
+<div>التاريخ: ${c.date}</div>
+<div>السعر: ${c.price}</div>
+<div>المدفوع: ${c.paid}</div>
+<div>المتبقي: ${Math.max(0,c.price-c.paid)}</div>
+
+</div>
+
+`;
+
+}).join("")}
+
+<hr>
+
+<div class="total">
+إجمالي الحالات: ${list.length}
+</div>
+
+<div class="total">
+الإجمالي: ${total}
+</div>
+
+<div class="total green">
+المدفوع: ${paid}
+</div>
+
+<div class="total ${remaining>0?'red':'green'}">
+المتبقي: ${remaining}
+</div>
+
+</div>
+
+<button onclick="printInvoice()">
+📄 إنشاء PDF
+</button>
+
+`;
+
+}
+
+
+/* =========================
+   إنشاء PDF
+========================= */
+
+function printInvoice(){
+
+let invoice=
+document.getElementById("printInvoice");
+
+if(!invoice){
+
+alert("اعرض الفاتورة أولاً");
+
+return;
+
+}
+
+let old=
+document.body.innerHTML;
+
+document.body.innerHTML=`
+
+<div style="
+font-family:Arial,Tahoma,sans-serif;
+direction:rtl;
+padding:25px;
+max-width:700px;
+margin:auto;
+">
+
+${invoice.outerHTML}
+
+</div>
+
+`;
+
+window.print();
+
+document.body.innerHTML=old;
+
+location.reload();
+
+}
+
+
+/* =========================
+   الإعدادات
+========================= */
+
+function loadSettings(){
+
+document.getElementById("labName").value=
+settings.name || "";
+
+document.getElementById("labPhone").value=
+settings.phone || "";
+
+document.getElementById("labAddress").value=
+settings.address || "";
+
+}
+
+
+function saveSettings(){
+
+settings={
+
+name:
+document.getElementById("labName").value.trim(),
+
+phone:
+document.getElementById("labPhone").value.trim(),
+
+address:
+document.getElementById("labAddress").value.trim()
+
+};
+
+saveAll();
+
+alert("تم حفظ الإعدادات");
+
+}
+
+
+/* =========================
+   النسخة الاحتياطية
+========================= */
+
+function backupData(){
+
+let data={
+
+doctors:doctors,
+cases:cases,
+prices:prices,
+settings:settings
+
+};
+
+let blob=new Blob(
+
+[JSON.stringify(data,null,2)],
+
+{type:"application/json"}
+
+);
+
+let url=
+URL.createObjectURL(blob);
+
+let a=
+document.createElement("a");
+
+a.href=url;
+
+a.download=
+"Nova-Dental-Lab-Backup.json";
+
+a.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================
+   استعادة البيانات
+========================= */
+
+function restoreData(event){
+
+let file=
+event.target.files[0];
+
+if(!file) return;
+
+let reader=
+new FileReader();
+
+reader.onload=function(){
+
+try{
+
+let data=
+JSON.parse(reader.result);
+
+doctors=
+Array.isArray(data.doctors)
+? data.doctors : [];
+
+cases=
+Array.isArray(data.cases)
+? data.cases : [];
+
+prices=
+Array.isArray(data.prices)
+? data.prices : [];
+
+settings=
+data.settings || {};
+
+saveAll();
+
+alert("تمت استعادة البيانات بنجاح");
+
+location.reload();
+
+}catch(e){
+
+alert("ملف النسخة الاحتياطية غير صحيح");
+
+}
+
+};
+
+reader.readAsText(file);
+
+  }</script>
 </body>
-      </html>
+</html>
