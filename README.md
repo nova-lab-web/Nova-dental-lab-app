@@ -1,0 +1,1 @@
+# Nova-dental-lab-app
